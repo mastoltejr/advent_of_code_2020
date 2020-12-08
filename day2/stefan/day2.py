@@ -1,7 +1,5 @@
 import re
 
-with open("day2_in","r") as f:
-    lines = f.readlines()
 
 def read_pass(pw):
     matches = re.match(r"(\d+)-(\d+) (.): (.*)", pw)
@@ -19,5 +17,8 @@ def p2_valid(pw):
     first, second, char, password = read_pass(pw)
     return (password[first - 1] == char) ^ (password[second - 1] == char)
 
-print('p1: ', sum(map(p1_valid, lines)))
-print('p2: ', sum(map(p2_valid, lines)))
+
+with open("day2_in","r") as f:
+    lines = f.readlines()
+    print('p1: ', sum(map(p1_valid, lines)))
+    print('p2: ', sum(map(p2_valid, lines)))
