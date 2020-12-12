@@ -14,12 +14,6 @@ def read_passport(raw_pass):
     return reduce(add_field, raw_pass.split(), {})
 
 
-def read_all_passports(content):
-    raw_passports = content.split('\n\n')
-    passports = map(read_passport, raw_passports)
-    return passports
-
-
 def contains_keys(passport):
     return req_keys.issubset(set(passport.keys()))
 
@@ -54,6 +48,7 @@ def valid_eyes(passport):
 def valid_pid(passport):
     return re.search(r"^\d{9}$", passport['pid'])
 
+
 def validate_passport(passport):
     return contains_keys(passport) \
         and valid_years(passport) \
@@ -70,4 +65,3 @@ with open("day4_in","r") as f:
     second_pass = list(filter(validate_passport, first_pass))
     print("p1: ", len(first_pass))
     print("p2: ", len(second_pass))
-    
